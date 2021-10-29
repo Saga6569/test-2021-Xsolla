@@ -5,13 +5,7 @@ import unknownError from "./Images/Unknownerror.png";
 import networkError from "./Images/NetworkError.png";
 
 
-const genData = (collectionData) => {
-  const city = collectionData.map((el) => el.city).sort();
-  const arrCity = ['all', ...Array.from(new Set(city))];
-  const monyh = collectionData.map((el) => (el.date.slice(3, 5)))
-  const arrMonyh = ['all', ...Array.from(new Set(monyh)).sort((a, b) => a - b)];
-  return {arrCity, arrMonyh}
-}
+
 
 const App = (props) => {
 
@@ -47,7 +41,17 @@ const App = (props) => {
     return renderEror(props.response);
   }
 
-  const arrCityMonyh = genData(newCollectionData)
+
+  const genData = () => {
+    const city = newCollectionData.map((el) => el.city).sort();
+    const arrCity = ['all', ...Array.from(new Set(city))];
+    const monyh = newCollectionData.map((el) => (el.date.slice(3, 5)))
+    const arrMonyh = ['all', ...Array.from(new Set(monyh)).sort((a, b) => a - b)];
+    return {arrCity, arrMonyh}
+  }
+
+
+  const arrCityMonyh = genData()
 
   const renderEvent = () => {
     const filtrCity = city === 'all' ? newCollectionData : newCollectionData.filter((el) => el.city === city);
