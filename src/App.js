@@ -47,7 +47,7 @@ const App = (props) => {
     return renderEror(props.response);
   }
 
-  const arrCityMonyh = genData(collectionData)
+  const arrCityMonyh = genData(newCollectionData)
 
   const renderEvent = () => {
     const filtrCity = city === 'all' ? newCollectionData : newCollectionData.filter((el) => el.city === city);
