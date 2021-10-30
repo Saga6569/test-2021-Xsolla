@@ -83,7 +83,7 @@ form div {
   top: 245px;
   left: 40px;
   font-size: 40px;
-  color: #FFFFFF;
+  
   font-weight: bold;
   font-family: Avenir;
 }
@@ -97,13 +97,13 @@ select {
   padding-left: 15px;
 }
 
-img {
+.Image {
   border-radius: 10px;
 }
 
-button {
-  width: 24px;
-  height: 24px;
+.Vector {
+  width: 14px;
+  height: 18px;
   position: absolute;
   right: 41px;
   top: 40px;

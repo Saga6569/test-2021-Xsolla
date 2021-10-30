@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { useState, useEffect } from 'react';
 import unknownError from "./Images/Unknownerror.png";
 import networkError from "./Images/NetworkError.png";
-
+import Vector from "./Images/Vector.svg";
 
 
 
@@ -63,15 +63,14 @@ const App = (props) => {
     
     return filtrMonth.map((el) => {
       const id = el.id;
-      const image = 'https://www.pngwing.com/ru/free-png-pinvw';
       el.hasOwnProperty('featured') &&  el.featured === true ? el.featured = false : el.featured = true;
-      const color = el.featured === true ? 'black' : '#fff';
+      const color = el.featured === true ? '#fff' : 'rgb(0, 0, 0, 0)';
       const colorCheckbox  = { 'backgroundColor': color};
       return (<div className="ss"  key={_.uniqueId()}>
-      <img src={el.image} alt={el.genre} width="600" height="400"/>
+      <img className="Image" src={el.image} alt={el.genre} width="600" height="400"/>
       <p>{String(el.date).slice(0, 2)}</p>
        <h4>{el.name}</h4>
-       <button type="button" value="" style={colorCheckbox} src={image} onClick={() => setnewCollectionData(newCollectionData.map((elFeaturd) => {
+       <img className="Vector" src={Vector} alt="Vector" type="button" value="" style={colorCheckbox} onClick={() => setnewCollectionData(newCollectionData.map((elFeaturd) => {
          if (elFeaturd.id === id) {
           elFeaturd.featured = elFeaturd.featured === false ? true : false;
          }
