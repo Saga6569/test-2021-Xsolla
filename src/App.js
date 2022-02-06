@@ -3,9 +3,7 @@ import _ from 'lodash';
 import { useState, useEffect } from 'react';
 import unknownError from "./Images/Unknownerror.png";
 import networkError from "./Images/NetworkError.png";
-import Vector from "./Images/Vector.svg";
-
-
+import Checkbox from "./Images/Checkbox.js";
 
 const App = (props) => {
 
@@ -58,24 +56,26 @@ const App = (props) => {
     const filtrMonth = month === 'all' ? filtrCity : filtrCity.filter((el) => el.date.slice(3, 5) === month);
     
     filtrMonth.sort((a, b) => a.date > b.date ? 1 : -1);
-
+    
     filtrMonth.sort( (a,b) =>  a.featured && !b.featured);
     
     return filtrMonth.map((el) => {
       const id = el.id;
       el.hasOwnProperty('featured') &&  el.featured === true ? el.featured = false : el.featured = true;
-      const color = el.featured === true ? '#fff' : 'rgb(0, 0, 0, 0)';
-      const colorCheckbox  = { 'backgroundColor': color};
       return (<div className="ss"  key={_.uniqueId()}>
       <img className="Image" src={el.image} alt={el.genre} width="600" height="400"/>
       <p>{String(el.date).slice(0, 2)}</p>
        <h4>{el.name}</h4>
-       <img className="Vector" src={Vector} alt="Vector" type="button" value="" style={colorCheckbox} onClick={() => setnewCollectionData(newCollectionData.map((elFeaturd) => {
-         if (elFeaturd.id === id) {
-          elFeaturd.featured = elFeaturd.featured === false ? true : false;
-         }
-         return elFeaturd;
-       }))}/>
+       <div className="Vector"  onClick={() => setnewCollectionData(newCollectionData.map((elFeaturd) => {
+          if (elFeaturd.id === id) {
+           elFeaturd.featured = elFeaturd.featured === false ? true : false;
+          }
+          return elFeaturd;
+        }))}>
+          <Checkbox props={el.featured}/>
+       </div>
+     
+     
       </div>)
     })
   }
@@ -91,38 +91,38 @@ const App = (props) => {
   })
 
     return(
-      <div className="contener">
-      <div className="contener-content">
-          <div className="name-list">
+     <div className="contener">
+          <div className="contener-content">
+            <div className="name-list">
               <h3>Event Listing</h3>
-          </div>
-          <div className="form-grup">
+            </div>
+            <div className="form-grup">
               <form className="form">
-                  <div className="form-city">
-                    <label>City :  </label>
-                    <select className="city" onChange={(event) => setCity(event.target.value)} multiple={false} value={city}>
-                      <>
+                <div className="form-city">
+                  <label>City: </label>
+                  <select className="city" onChange={(event) => setCity(event.target.value)} multiple={false} value={city}>
+                    <>
                       {vDomaCity}
                     </>
-                    </select>
-                  </div>
-                  <div className="form-month">
-                    <label>Month :  </label>
-                    <select className="date" onChange={(event) => setDate(event.target.value)} multiple={false} value={month}>
-                      <>
+                  </select>
+                </div>
+                <div className="form-month">
+                  <label>Month: </label>
+                  <select className="date" onChange={(event) => setDate(event.target.value)} multiple={false} value={month}>
+                    <>
                       {vDomaMonyh}
-                     </>
-                      </select>
-                  </div>
-                </form>
-          </div>
-              <div className="flex-container">
-                <>
+                    </>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div className="flex-container">
+              <>
                 {renderEvent()}
-                </>
-             </div>
-      </div>
-  </div>
+              </>
+            </div>
+          </div>
+        </div>
     );
   };
 

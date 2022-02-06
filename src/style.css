@@ -102,9 +102,9 @@ select {
 }
 
 .Vector {
-  width: 14px;
-  height: 18px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  right: 41px;
+  right: 30px;
   top: 40px;
 }
